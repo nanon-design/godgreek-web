@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>God in the website – เทพกรีกโบราณ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Kanit:wght@300;400;500;600&family=Noto+Serif:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ธีมภาพเขียนบนแจกันกรีก: ดำ ดินเผา ครีม จึงใช้ชุดสีเดียวทั้งโหมดสว่างและมืด */
+:root{--bg:#120e0b;--sf:#1c1612;--sf2:#261d17;--tx:#f1e4c8;--mu:#b9a98e;--ln:rgba(241,228,200,.15);--tc:#c9632f;--ac:#d6ad4a;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:var(--bg)}*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font-family:'Kanit','Noto Sans Thai',sans-serif;font-size:17px;line-height:1.7;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #ffd9a0;outline-offset:3px}
+.gk,.serif{font-family:'Noto Serif','Cinzel',serif}
+.mea{height:24px;opacity:.7;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 22V2h20v16H8V8h8' fill='none' stroke='%23c9632f' stroke-width='2'/%3E%3C/svg%3E") repeat-x}
+.view{display:none}.view.on{display:block;animation:fi .6s ease}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}}
+/* หน้าหลัก */
+.hd{text-align:center;padding:44px 20px 30px}
+h1{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(38px,8.5vw,88px);line-height:1.1;letter-spacing:.04em}
+.hd p{color:var(--mu);margin-top:14px;font-size:18px}
+.pillars{display:flex;gap:10px;height:min(580px,calc(100svh - 280px));min-height:440px;padding:0 20px;max-width:1180px;margin:0 auto 40px}
+.pl{position:relative;flex:1;min-width:0;overflow:hidden;border:1px solid var(--ln);border-radius:16px 16px 4px 4px;background:linear-gradient(180deg,color-mix(in srgb,var(--p) 26%,var(--sf)),var(--sf) 85%);cursor:pointer;transition:flex .7s cubic-bezier(.2,.8,.2,1),border-color .4s;outline-offset:-3px}
+.pl.act{flex:4.6;border-color:var(--p)}
+.pl::before{content:"";position:absolute;inset:0 0 auto;height:14px;background:repeating-linear-gradient(90deg,var(--p) 0 10px,transparent 10px 14px);opacity:.55}
+.gv{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);writing-mode:vertical-rl;font-size:26px;letter-spacing:.2em;color:var(--p);transition:opacity .4s}
+.act .gv{opacity:0}
+.pd{position:absolute;inset:0;padding:42px 26px 26px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .5s;pointer-events:none}
+.act .pd{opacity:1;transition-delay:.25s;pointer-events:auto}
+.pd .gk{font-size:clamp(44px,7vw,84px);line-height:1;color:var(--p);margin-bottom:10px}
+.pd h2{font-size:28px;font-weight:600;line-height:1.3}
+.pd p{color:#dccfb6;margin:6px 0 18px;font-size:16px;max-width:420px}
+.go{align-self:flex-start;border:1px solid var(--p);border-radius:30px;padding:8px 20px;font-weight:500;background:none;transition:background .3s,color .3s}
+.go:hover{background:var(--p);color:#16100b}
+/* หน้าดูเทพ */
+#viewer.on{position:fixed;inset:0;z-index:5;display:grid;grid-template-rows:auto minmax(220px,38svh) 1fr auto;background:var(--bg);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+.vb{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--ln)}
+.back{border:1px solid var(--ln);background:none;border-radius:30px;padding:6px 18px;font-size:15px}
+.back:hover{border-color:var(--ac)}
+.vt{flex:1;font-weight:500;font-size:18px}.ct{color:var(--mu);font-size:15px}
+.stage{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;background:radial-gradient(60% 70% at 50% 50%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 75%);transition:background .6s}
+.sl{position:absolute;left:50%;top:50%;height:86%;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:120px 120px 10px 10px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 24%,var(--sf)),var(--sf));display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;padding:0 12px 20px;overflow:hidden;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .4s;cursor:pointer}
+.drag .sl{transition:none}
+.sl .gw{position:absolute;top:18%;left:0;right:0;font-size:clamp(46px,9vw,86px);line-height:1;color:var(--c);opacity:.9}
+.sl b{font-size:22px;font-weight:600;line-height:1.3}.sl small{font-family:'Cinzel',serif;color:var(--mu);font-size:13px;letter-spacing:.1em}
+.ar{position:absolute;top:50%;transform:translateY(-50%);z-index:30;width:46px;height:46px;border-radius:50%;border:1px solid var(--ln);background:rgba(18,14,11,.7);display:none;align-items:center;justify-content:center}
+.ar:hover{border-color:var(--ac)}.ar svg{width:20px;height:20px;stroke:var(--tx);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#pv{left:12px}#nx{right:12px}
+@media (hover:hover){.ar{display:flex}}
+.info{overflow:auto;padding:22px 20px 28px;max-width:640px;width:100%;margin:0 auto;overscroll-behavior:contain}
+.info.re{animation:fi .5s ease}
+.nm{font-size:34px;font-weight:600;line-height:1.25}
+.en{font-family:'Cinzel',serif;color:var(--ac);letter-spacing:.06em;margin-top:2px}.en span{font-family:'Noto Serif',serif;color:var(--mu);letter-spacing:0}
+.sb{margin-top:10px;font-size:19px;font-weight:500}.st{margin-top:8px;color:#e0d3ba}
+.fc{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.fc span{border:1px solid var(--ln);border-radius:30px;padding:2px 14px;font-size:15px;color:var(--mu)}
+.info h3{margin-top:28px;font-size:20px;font-weight:600;display:flex;align-items:center;gap:12px}.info h3::after{content:"";flex:1;height:1px;background:var(--ln)}
+.gr{display:block;width:100%;max-width:440px;margin:10px auto 0}
+.gr line{stroke:var(--ac);stroke-opacity:.45;stroke-width:1.5;transition:stroke-opacity .3s}
+.gr .nd{cursor:pointer}.gr .nd circle{fill:var(--sf2);stroke:var(--ln);stroke-width:1.5;transition:stroke .3s,fill .3s}
+.gr .nd:hover circle,.gr .nd.on circle{stroke:var(--ac);fill:color-mix(in srgb,var(--ac) 25%,var(--sf2))}
+.gr .nd.on text.n{fill:#fff}
+.gr text{text-anchor:middle;fill:var(--tx)}.gr .n{font-size:15px;font-weight:500}.gr .t{font-size:12px;fill:var(--mu)}.gr .g{font-family:'Noto Serif',serif;font-size:20px;fill:var(--ac)}
+.rc{margin-top:8px;padding:18px 20px;border:1px solid var(--ln);border-left:3px solid var(--ac);border-radius:10px;background:var(--sf);min-height:132px}
+.rc.re{animation:fi .4s ease}
+.ty{display:inline-block;font-size:13px;padding:1px 12px;border-radius:30px;background:color-mix(in srgb,var(--ac) 22%,transparent);color:#ffe3ae;margin-right:10px}
+.rc b{font-size:19px}.rc p{margin:8px 0 0;color:#e0d3ba}
+.rc .b{margin-top:12px;border:1px solid var(--ac);border-radius:30px;padding:6px 18px;background:none;font-size:15px}.rc .b:hover{background:var(--ac);color:#16100b}
+.hot{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;border-top:1px solid var(--ln);scrollbar-width:none;background:var(--sf)}
+.hot::-webkit-scrollbar{display:none}
+.hot button{flex:none;width:70px;display:flex;flex-direction:column;align-items:center;gap:0;padding:6px 4px;border:1px solid transparent;border-radius:10px;background:none;line-height:1.3;transition:background .3s,border-color .3s}
+.hot button.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 18%,transparent)}
+.hot i{font-style:normal;font-size:12px;color:var(--mu)}.hot b{font-family:'Noto Serif',serif;font-size:24px;color:var(--c);font-weight:500}.hot small{font-size:12.5px;color:var(--tx);white-space:nowrap;max-width:66px;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:760px){.pillars{flex-direction:column;height:calc(100svh - 250px);min-height:520px;padding:0 14px}.pl{border-radius:12px}.gv{writing-mode:horizontal-tb;left:22px;top:50%;transform:translateY(-50%);font-size:22px;letter-spacing:.1em}.pd{padding:36px 20px 18px}.pd .gk{font-size:44px}.pd h2{font-size:24px}.pd p{margin-bottom:12px}.pl.act{flex:5}}
+@media (min-width:900px){#viewer.on{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr auto}.vb,.hot{grid-column:1/3}.stage{grid-row:2}.info{grid-row:2;padding:34px 40px;max-width:none}.sl b{font-size:26px}}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}}
+</style>
+</head>
+<body>
+<section class="view on" id="home">
+  <div class="mea"></div>
+  <div class="hd"><h1>God in the website</h1><p>รวมเทพ สัตว์ในตำนาน และสถานที่ศักดิ์สิทธิ์ของกรีกโบราณ เลือกหมวดเพื่อเริ่มศึกษา</p></div>
+  <div class="pillars" id="pl"></div>
+  <div class="mea"></div>
+</section>
+<section class="view" id="viewer" aria-label="รายละเอียด">
+  <div class="vb"><button class="back" id="bk">กลับหน้าหลัก</button><div class="vt" id="vt"></div><div class="ct" id="ct"></div></div>
+  <div class="stage" id="sg">
+    <button class="ar" id="pv" aria-label="องค์ก่อนหน้า"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="ar" id="nx" aria-label="องค์ถัดไป"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="info" id="in" aria-live="polite"></div>
+  <div class="hot" id="ht"></div>
+</section>
+
+<script>
+(function(){
+var C=[['g','Θεοί','เทพเจ้า','เทพโอลิมปัสทั้งสิบสองกับเจ้าแห่งยมโลก ใครเป็นพี่น้อง ใครเป็นศัตรูกัน'],['m','Τέρατα','สัตว์และสิ่งมีชีวิต','ม้าบิน สุนัขสามหัว และอสูรที่วีรบุรุษต้องเผชิญ'],['p','Ἱερά','สถานที่ศักดิ์สิทธิ์และเมือง','ภูเขาของเทพ วิหารพยากรณ์ เมืองสำคัญ และยมโลก'],['h','Ἥρωες','วีรบุรุษ','มนุษย์ที่เทพเลือกช่วย หรือกลั่นแกล้ง'],['t','Τιτᾶνες','ไททัน','เทพรุ่นก่อนที่ถูกซุสโค่นและลงโทษ'],['a','Σύμβολα','ของวิเศษ','อาวุธและสิ่งของที่ก่อเหตุใหญ่ในตำนาน']];
+var R=[
+['zeus','g','ซุส','Zeus','Ζεύς','ราชาแห่งเทพ เจ้าแห่งท้องฟ้าและสายฟ้า','ลูกของโครนัสกับเรีย โค่นบิดาแล้วขึ้นครองโอลิมปัส เป็นผู้รักษากฎและความยุติธรรม แต่ก็ขึ้นชื่อเรื่องรักมากมาย','สายฟ้า · อินทรี · ต้นโอ๊ก','#d6ad4a',[['cronus','บิดา','ซุสเป็นลูกที่รอดจากการถูกกลืน แล้วกลับมาโค่นโครนัสในสงครามไททัน'],['hera','ภรรยา','แต่งกับเฮร่าซึ่งเป็นพี่น้องกัน เธอเป็นราชินี แต่หึงหวงเรื่องชู้สาวของเขาเสมอ'],['athena','ธิดา','เอเธน่าเกิดจากศีรษะของซุสหลังเขากลืนเมทิส จึงเป็นลูกที่ใกล้ชิดที่สุด'],['heracles','บุตรกับมนุษย์','เฮราเคิลส์เป็นลูกนอกสมรส จึงถูกเฮร่าเกลียดชังมาตลอด']]],
+['hera','g','เฮร่า','Hera','Ἥρα','ราชินีแห่งเทพ ผู้พิทักษ์การแต่งงาน','ปกป้องภรรยาที่ซื่อสัตย์และครอบครัว มักปรากฏกับนกยูงและทับทิม ลงโทษผู้ที่ทำให้เธอเสียหน้าอย่างไม่ปรานี','นกยูง · ทับทิม · มงกุฎ','#7fa58f',[['zeus','สามี','ถูกหักหลังเรื่องชู้สาวบ่อยครั้ง ความหึงของเธอจึงเป็นต้นเหตุของเรื่องเล่าจำนวนมาก'],['hephaestus','บุตร','เธอรังเกียจที่ลูกพิการจึงโยนลงจากโอลิมปัส เขาแก้แค้นด้วยบัลลังก์ทองที่ล็อกตัวเธอไว้'],['heracles','ศัตรู','เขาเป็นลูกของซุสกับหญิงอื่น เธอจึงส่งความบ้าคลั่งมาจนเขาต้องทำภารกิจ 12 อย่าง'],['dionysus','ผู้ข่มเหง','ไดโอนีซัสเป็นลูกนอกสมรสอีกคน เธอทำให้เขาคลุ้มคลั่งและต้องเร่ร่อน']]],
+['poseidon','g','โพไซดอน','Poseidon','Ποσειδῶν','เจ้าแห่งทะเล แผ่นดินไหว และม้า','พี่ชายของซุส ถือตรีศูลที่เขย่าทั้งทะเลและแผ่นดินได้ อารมณ์รุนแรงเหมือนคลื่น และไม่ชอบเสียหน้า','ตรีศูล · ม้า · โลมา','#4d92b0',[['zeus','พี่น้อง','สามพี่น้องจับสลากแบ่งโลก ซุสได้ฟ้า โพไซดอนได้ทะเล ฮาเดสได้ยมโลก'],['athena','คู่แข่ง','แย่งกันเป็นเทพประจำเอเธนส์ ชาวเมืองเลือกมะกอกของเธอ ไม่เลือกน้ำเค็มของเขา'],['odysseus','ผู้ตามล้าง','โอดิสเซียสทำให้ไซคลอปส์ ลูกของเขาตาบอด เขาจึงซัดเรือให้หลงทางสิบปี'],['pegasus','บิดา','ม้าบินเพกาซัสเกิดจากโพไซดอนกับเมดูซ่า']]],
+['hades','g','ฮาเดส','Hades','Ἅιδης','เจ้าแห่งยมโลกและความมั่งคั่งใต้ดิน','ไม่ใช่เทพแห่งความชั่ว แต่ปกครองวิญญาณคนตายอย่างเที่ยงธรรม แทบไม่ขึ้นโอลิมปัส และมีหมวกล่องหนเป็นของวิเศษ','หมวกล่องหน · เซอร์เบอรัส · อัญมณีใต้ดิน','#8a6f8f',[['demeter','ผู้ถูกโกรธ','เขาพาเพอร์เซโฟนี ลูกสาวของดีมีเทอร์ ไปเป็นราชินี โดยซุสรู้เห็น แม่จึงโศกเศร้าจนพืชผลไม่งอก'],['cerberus','สุนัขเฝ้า','สุนัขสามหัวเฝ้าประตูยมโลก ไม่ให้วิญญาณหนีออกมา'],['hermes','ผู้นำทาง','เฮอร์มีสพาวิญญาณคนตายมาส่งถึงยมโลก'],['zeus','พี่น้อง','ถูกโครนัสกลืนพร้อมกัน แล้วร่วมกับซุสชิงชัยในสงครามไททัน']]],
+['demeter','g','ดีมีเทอร์','Demeter','Δημήτηρ','เทพีแห่งการเกษตรและธัญพืช','ดูแลให้ข้าวสาลีเติบโต เมื่อเพอร์เซโฟนีลูกสาวถูกพาไปยมโลก เธอทำให้โลกแห้งแล้ง จนซุสต้องให้ลูกขึ้นมาอยู่กับแม่บางส่วนของปี','ข้าวสาลี · คบเพลิง · พิธีลึกลับเอลูซิส','#c9a35c',[['hades','ผู้พรากลูก','เขาพาลูกสาวไปยมโลก เธอจึงหยุดให้พืชผลเติบโต นี่คือที่มาของเรื่องฤดูหนาว'],['zeus','พี่น้อง','ซุสเป็นทั้งพี่ชายและพ่อของเพอร์เซโฟนี สุดท้ายต้องไกล่เกลี่ยเพื่อให้พืชกลับมางอก'],['เอลูซิส','เมืองของเธอ','พิธีลึกลับที่เอลูซิสเล่าเรื่องนี้ เพื่อบอกว่าชีวิตเกิดใหม่ได้']]],
+['athena','g','เอเธน่า','Athena','Ἀθηνᾶ','เทพีแห่งปัญญาและการศึกอย่างมียุทธวิธี','เกิดจากศีรษะของซุสในชุดเกราะเต็มตัว ชอบช่วยวีรบุรุษด้วยสติปัญญามากกว่ากำลัง มีนกเค้าแมวเป็นสัญลักษณ์','นกเค้าแมว · มะกอก · โล่เอจิส','#9fb2bd',[['zeus','บิดา','เกิดจากศีรษะของซุส จึงเป็นลูกที่เขาไว้ใจและให้ถือโล่เอจิสของเขา'],['poseidon','คู่แข่ง','ชิงเมืองเอเธนส์กับโพไซดอน เธอชนะด้วยต้นมะกอกที่ให้ทั้งอาหารและน้ำมัน'],['ares','คู่ตรงข้าม','เธอรบด้วยแผนและเหตุผล เอรีสรบด้วยความดุดัน ในตำนานเธอมักเป็นฝ่ายชนะ'],['odysseus','ผู้อุปถัมภ์','ชอบความฉลาดของเขา จึงคอยช่วยให้ผ่านอุปสรรคจนกลับบ้านได้']]],
+['apollo','g','อพอลโล','Apollo','Ἀπόλλων','เทพแห่งแสง ดนตรี การพยากรณ์ และการรักษา','ฝาแฝดของอาร์เทมิส มีพิณเป็นของคู่กาย สังหารงูไพธอนที่เดลฟีแล้วตั้งที่นั่นเป็นวิหารพยากรณ์','พิณ · ธนู · ต้นลอเรล','#e0b84a',[['artemis','ฝาแฝด','เกิดจากเลโตกับซุสบนเกาะเดลอส ทั้งคู่เป็นนักธนูและปกป้องแม่'],['hermes','ผู้มอบพิณ','เฮอร์มีสขโมยวัวของเขา แล้วเอาพิณมาแลกเพื่อคืนดีกัน'],['delphi','วิหารของเขา','ที่เดลฟีมีนักบวชหญิงพิเธียรับคำพยากรณ์ในนามของเขา'],['dionysus','สองขั้ว','นักคิดรุ่นหลังมักเปรียบอพอลโลเป็นระเบียบ ไดโอนีซัสเป็นการปลดปล่อย สองสิ่งที่ศิลปะต้องมี']]],
+['artemis','g','อาร์เทมิส','Artemis','Ἄρτεμις','เทพีแห่งการล่า ป่า และสัตว์ป่า','ขอพ่อซุสให้เป็นสาวพรหมจรรย์ตลอดกาลและมีธนูเงิน ปกป้องสัตว์ป่าและเด็กสาว โกรธรุนแรงเมื่อถูกลบหลู่','ธนู · กวาง · พระจันทร์','#b9c4cf',[['apollo','ฝาแฝด','เธอเกิดก่อนและช่วยแม่คลอดน้องชาย ทั้งคู่ตามปกป้องกันเสมอ'],['zeus','บิดา','ตั้งแต่เด็กเธอขอพรจากซุสหลายข้อ เช่น ธนู ป่า และการไม่ต้องแต่งงาน'],['เลโต','มารดา','เฮร่าห้ามแผ่นดินรับเลโตมาคลอด เธอจึงต้องไปคลอดบนเกาะลอยน้ำเดลอส']]],
+['ares','g','เอรีส','Ares','Ἄρης','เทพแห่งสงครามที่ดุดันและนองเลือด','ลูกของซุสกับเฮร่า รักการรบและความโกลาหล ทั้งที่เทพองค์อื่น แม้แต่พ่อ ก็ไม่ค่อยชอบเขา','หอก · หมวกเกราะ · แร้ง สุนัข','#b0553a',[['aphrodite','คนรัก','เธอแต่งกับเฮฟเฟสตัสแต่รักเขา จนถูกจับได้ด้วยตาข่ายทองคำ'],['athena','คู่ตรงข้าม','สงครามของเขาคือความรุนแรง สงครามของเธอคือกลยุทธ์ เธอจึงมักชนะ'],['zeus','บิดา','ซุสพูดในอีเลียดว่าเขาเป็นลูกที่ตนเกลียดที่สุดเพราะชอบทะเลาะ']]],
+['aphrodite','g','อะโฟรไดท์','Aphrodite','Ἀφροδίτη','เทพีแห่งความรักและความงาม','ตามเฮเซียดเกิดจากฟองคลื่นทะเลใกล้เกาะไซปรัส ใครเห็นก็หลงเสน่ห์ แม้แต่เทพก็ไม่พ้น','นกพิราบ · กุหลาบ · สายคาดเอว','#d98f99',[['hephaestus','สามี','ถูกจัดให้แต่งกับเฮฟเฟสตัสผู้เก่งงานช่าง แต่เธอไปรักเอรีส'],['ares','คนรัก','เป็นคู่รักลับที่ถูกเฮฟเฟสตัสจับได้ จนทั้งสองถูกเทพทั้งหลายหัวเราะเยาะ'],['เฮร่าและเอเธน่า','คู่แข่งความงาม','ทั้งสามชิงแอปเปิลทองคำ ปารีสเลือกเธอ นำไปสู่สงครามเมืองทรอย']]],
+['hephaestus','g','เฮฟเฟสตัส','Hephaestus','Ἥφαιστος','เทพแห่งไฟ การตีเหล็ก และช่างฝีมือ','เทพผู้พิการแต่ฝีมือเยี่ยมที่สุดในโอลิมปัส สร้างวังของเทพ อาวุธ และหุ่นทองที่ช่วยงานเขา','ค้อน · ทั่ง · ไฟ','#d2793a',[['hera','มารดา','ถูกแม่โยนลงจากโอลิมปัส เขาจึงสร้างบัลลังก์ทองกักตัวเธอไว้เป็นการตอบโต้'],['aphrodite','ภรรยา','ถูกจัดให้แต่งกับเธอแต่ไม่เคยได้ความรักตอบ เขาจึงใช้ตาข่ายจับเธอกับเอรีส'],['pandora','ผู้สร้างแพนโดรา','ซุสสั่งให้เขาปั้นผู้หญิงคนแรกจากดินเพื่อเป็นของลงโทษมนุษย์']]],
+['hermes','g','เฮอร์มีส','Hermes','Ἑρμῆς','ผู้ส่งสาร เทพแห่งนักเดินทาง การค้า และจอมโจร','ตั้งแต่เกิดวันแรกก็ขโมยวัวของอพอลโล รวดเร็วและเจ้าเล่ห์ สวมรองเท้ามีปีก ถือไม้คาดูเซียส','รองเท้ามีปีก · ไม้คาดูเซียส · หมวกนักเดินทาง','#6fb3a8',[['apollo','ผู้เสียวัว','ขโมยวัวแล้วเล่นพิณให้ฟัง อพอลโลหายโกรธและรับพิณแทน'],['hades','ผู้นำวิญญาณ','พาวิญญาณคนตายไปส่งยมโลก จึงเป็นเทพที่ข้ามได้ทั้งสองโลก'],['perseus','ผู้ช่วย','มอบดาบโค้งที่ใช้ตัดหัวเมดูซ่า']]],
+['dionysus','g','ไดโอนีซัส','Dionysus','Διόνυσος','เทพแห่งไวน์ งานเลี้ยง และละคร','เป็นลูกของซุสกับเซเมเลซึ่งเป็นมนุษย์ ซุสเย็บตัวอ่อนไว้ที่ต้นขาจนครบกำหนด เขาจึงเกิดสองครั้ง','ไวน์ · เถาไอวี · ไม้ธีร์ซัส','#8f5fa8',[['zeus','บิดา','ช่วยชีวิตเขาไว้หลังเซเมเลสิ้นชีพ ด้วยการเก็บไว้ในต้นขา'],['hera','ผู้ข่มเหง','เป็นลูกนอกสมรสของสามี เธอจึงทำให้เขาคลุ้มคลั่งและต้องเร่ร่อน'],['apollo','สองขั้ว','ฝั่งหนึ่งคือเหตุผลและความเรียบร้อย อีกฝั่งคืออารมณ์และการปลดปล่อย']]],
+
+['pegasus','m','เพกาซัส','Pegasus','Πήγασος','ม้าบินแห่งตำนาน','เกิดจากเลือดของเมดูซ่าเมื่อถูกตัดหัว ต่อมาวีรบุรุษเบลเลอโรฟอนใช้บังเหียนทองจากเอเธน่าฝึกมันได้','ปีก · ม้า · น้ำพุ','#9db4c0',[['poseidon','บิดา','โพไซดอนเป็นเทพแห่งม้า จึงเป็นพ่อของม้าบิน'],['medusa','มารดา','มันกระโดดออกจากร่างเมดูซ่าหลังเพอร์ซิอุสตัดหัว'],['athena','ผู้มอบบังเหียน','เอเธน่าให้บังเหียนทอง จึงฝึกมันได้']]],
+['cerberus','m','เซอร์เบอรัส','Cerberus','Κέρβερος','สุนัขสามหัวเฝ้ายมโลก','ยอมให้วิญญาณเข้าแต่ไม่ให้ใครออก ถูกเฮราเคิลส์ลากขึ้นมาในภารกิจสุดท้าย','สามหัว · หางงู · ประตูยมโลก','#b0553a',[['hades','เจ้านาย','เป็นสุนัขเฝ้าของฮาเดสที่ประตูอาณาจักรใต้ดิน'],['heracles','ผู้เอาชนะ','ภารกิจที่ 12 ให้เขาจับมันโดยไม่ใช้อาวุธ แล้วนำกลับไปคืนฮาเดส']]],
+['medusa','m','เมดูซ่า','Medusa','Μέδουσα','กอร์กอนผู้ผมเป็นงู','ใครสบตาจะกลายเป็นหิน ตามฉบับของโอวิด เธอเคยเป็นหญิงงามที่ถูกเอเธน่าสาปหลังเหตุร้ายในวิหารของเทพี','ผมงู · สายตาหิน','#6f9a7a',[['perseus','ผู้สังหาร','เขามองเงาในโล่แทนสบตา แล้วตัดหัวเธอขณะหลับ'],['athena','ผู้สาป','ตามโอวิด เธอเปลี่ยนผมเมดูซ่าเป็นงู ภายหลังเอเธน่าก็เอาหัวเธอมาประดับโล่'],['pegasus','ลูก','ม้าบินกระโดดออกจากร่างเธอหลังเธอถูกสังหาร']]],
+['minotaur','m','มิโนทอร์','Minotaur','Μινώταυρος','อสูรหัววัวในเขาวงกต','ลูกของราชินีปาสิฟาเอกับวัวศักดิ์สิทธิ์ ถูกขังในเขาวงกตที่เกาะครีต และถูกเธซีอุสสังหารโดยมีด้ายของอาริอาดเนช่วยนำทาง','หัววัว · เขาวงกต · เกาะครีต','#a86a4a',[['poseidon','ต้นเหตุ','กษัตริย์มิโนสไม่ยอมบูชายัญวัวที่โพไซดอนส่งมา เขาจึงสาปให้ราชินีหลงรักวัวตัวนั้น'],['เธซีอุส','ผู้สังหาร','วีรบุรุษจากเอเธนส์อาสาเข้าเขาวงกต เพื่อหยุดการส่งเด็กไปเป็นเครื่องบรรณาการ']]],
+
+['olympus','p','ภูเขาโอลิมปัส','Mount Olympus','Ὄλυμπος','บ้านของเทพทั้งสิบสอง','ภูเขาสูงสุดของกรีซ สูงราว 2,917 เมตร ชาวกรีกเชื่อว่ายอดเขาอยู่เหนือเมฆ เป็นที่ประชุมและจัดงานเลี้ยงของเทพ','ยอดเขาเหนือเมฆ · ที่ประชุมเทพ','#cfc7b4',[['zeus','เจ้าของบัลลังก์','ซุสนั่งบัลลังก์บนยอดเขาและเรียกประชุมเทพที่นี่'],['hermes','ผู้ส่งสาร','เฮอร์มีสวิ่งส่งข่าวระหว่างยอดเขากับโลกมนุษย์']]],
+['delphi','p','เดลฟี','Delphi','Δελφοί','ศูนย์กลางโลกในสายตาชาวกรีก','วิหารพยากรณ์ของอพอลโล นักบวชหญิงพิเธียให้คำทำนาย กษัตริย์และผู้นำเดินทางมาขอคำแนะนำ ทางเข้ามีคำจารึกว่า “จงรู้จักตนเอง”','คำพยากรณ์ · พิเธีย · หินศูนย์กลางโลก','#c9a86a',[['apollo','เจ้าของวิหาร','เขาสังหารงูไพธอนที่เฝ้าที่นี่ แล้วยึดเป็นวิหารของตน'],['zeus','ผู้กำหนดศูนย์กลาง','ปล่อยอินทรีสองตัวจากสองปลายโลกบินมาพบกัน ณ จุดนี้']]],
+['athens','p','เอเธนส์','Athens','Ἀθῆναι','เมืองของเอเธน่า','เอเธน่ากับโพไซดอนแข่งกันเป็นเทพประจำเมือง เธอมอบมะกอก ชาวเมืองจึงเลือกเธอและสร้างพาร์เธนอนถวาย','พาร์เธนอน · อะโครโพลิส · มะกอก','#b4a47a',[['athena','เทพีประจำเมือง','เมืองใช้ชื่อของเธอ และมีพาร์เธนอนเป็นวิหารบนอะโครโพลิส'],['poseidon','คู่แข่ง','เขาแทงตรีศูลจนน้ำเค็มพุ่งขึ้น แต่ชาวเมืองเห็นว่ามะกอกมีประโยชน์กว่า']]],
+['olympia','p','โอลิมเปีย','Olympia','Ὀλυμπία','บ้านเกิดของโอลิมปิก','สถานที่บูชาซุส เริ่มจัดกีฬาโอลิมปิกโบราณตามประเพณีเมื่อ 776 ปีก่อนคริสตกาล และมีการสงบศึกเพื่อให้นักกีฬาเดินทางได้','เทวสถานซุส · สนามกีฬา · สงบศึกโอลิมปิก','#b8b08a',[['zeus','เทพผู้รับการบูชา','มีรูปปั้นซุสของฟีเดียส เป็นหนึ่งในเจ็ดสิ่งมหัศจรรย์โลกโบราณ'],['heracles','ผู้ก่อตั้งตามตำนาน','เล่ากันว่าเขาเป็นผู้ริเริ่มการแข่งขันถวายซุส']]],
+['underworld','p','ยมโลก','Underworld','Ἅιδου δόμοι','ดินแดนของวิญญาณ','อาณาจักรของฮาเดส มีแม่น้ำสติกซ์ขวางทาง คนพายเรือชื่อชาร์รอนรับค่าโดยสารเป็นเหรียญ วิญญาณถูกตัดสินว่าไปแดนสุขหรือแดนทุกข์','แม่น้ำสติกซ์ · ชาร์รอน · เหรียญใต้ลิ้น','#8a6f8f',[['hades','ผู้ปกครอง','ฮาเดสเป็นเจ้าของอาณาจักรและราชินีเพอร์เซโฟนีอยู่เคียงข้าง'],['hermes','ผู้นำทาง','พาวิญญาณมาถึงฝั่งแม่น้ำ'],['cerberus','ผู้เฝ้าประตู','คอยไม่ให้วิญญาณออกไป']]],
+
+['heracles','h','เฮราเคิลส์','Heracles','Ἡρακλῆς','วีรบุรุษผู้ทำ 12 ภารกิจ','ลูกของซุสกับอัลค์มีนี มีกำลังเหนือมนุษย์ ต้องทำ 12 ภารกิจเพื่อชดใช้ที่ฆ่าครอบครัวในอาการบ้าคลั่งที่เฮร่าสาป เมื่อตายได้เป็นเทพ','กระบอง · หนังสิงโต · คันธนู','#c78a3c',[['zeus','บิดา','พ่อเป็นราชาเทพ เขาจึงมีพละกำลังเกินมนุษย์'],['hera','ศัตรู','เธอเกลียดเขาเพราะเป็นผลของชู้สาวของซุส จึงรังควานเขาตั้งแต่ทารก'],['cerberus','ภารกิจสุดท้าย','เขาต้องไปจับสุนัขสามหัวจากยมโลก']]],
+['perseus','h','เพอร์ซิอุส','Perseus','Περσεύς','ผู้ปราบเมดูซ่า','ลูกของซุสกับดาเน ได้ของวิเศษจากเทพ ทั้งโล่ขัดเงา ดาบโค้ง รองเท้ามีปีก และหมวกล่องหน ไปตัดหัวเมดูซ่า','ดาบโค้ง · โล่ · รองเท้ามีปีก','#7aa6b5',[['medusa','เหยื่อ','ตัดหัวกอร์กอนเพื่อนำไปให้กษัตริย์ แล้วใช้หัวนั้นเป็นอาวุธ'],['athena','ผู้ช่วย','มอบโล่ขัดเงาให้เขามองเงา ไม่ต้องสบตา'],['hermes','ผู้ช่วย','ให้ดาบโค้งที่ตัดหัวเมดูซ่าได้']]],
+['odysseus','h','โอดิสเซียส','Odysseus','Ὀδυσσεύς','ราชาเจ้าเล่ห์แห่งอิธากา','เจ้าของแผนม้าไม้ที่ทำให้ทรอยแตก หลังสงครามต้องเดินทางกลับบ้านอีกสิบปีท่ามกลางพายุและอสูร','ม้าไม้ · ธนูใหญ่ · ปัญญา','#a8927a',[['athena','ผู้อุปถัมภ์','เธอชื่นชมความฉลาดของเขา คอยช่วยให้กลับบ้านได้'],['poseidon','ศัตรู','เขาทำให้ลูกของโพไซดอนตาบอด จึงถูกซัดเรือหลงทางนานหลายปี']]],
+
+['cronus','t','โครนัส','Cronus','Κρόνος','ราชาไททันและพ่อของเทพโอลิมปัส','โค่นบิดาแล้วขึ้นครองยุคทอง แต่กลัวคำทำนายว่าลูกจะล้มตน จึงกลืนลูกทุกคนที่เกิด','เคียว · ยุคทอง','#8d7b5d',[['zeus','ลูกผู้โค่นเขา','ซุสรอดจากการถูกกลืน แล้วรวมพี่น้องโค่นโครนัสในสงครามไททัน'],['hades','ลูกที่ถูกกลืน','ฮาเดสกับพี่น้องถูกคายออกมาเมื่อโครนัสถูกให้ดื่มยาอาเจียน']]],
+['atlas','t','แอตลาส','Atlas','Ἄτλας','ผู้แบกท้องฟ้า','ไททันที่รบฝั่งโครนัสและแพ้ ซุสจึงลงโทษให้ยืนแบกท้องฟ้าไว้ตลอดกาล','ท้องฟ้า · เทือกเขา','#6f8aa0',[['zeus','ผู้ลงโทษ','ซุสสั่งให้เขารับโทษแบกฟ้า หลังสงครามไททัน'],['heracles','ผู้ใช้แรง','เฮราเคิลส์ขอให้เขาไปเก็บแอปเปิลทอง ระหว่างนั้นต้องแบกฟ้าแทน'],['prometheus','พี่น้อง','ทั้งคู่เป็นลูกของไททันไอเอเพทัส และถูกลงโทษจากซุสเหมือนกัน']]],
+['prometheus','t','โพรมีธีอุส','Prometheus','Προμηθεύς','ผู้ขโมยไฟให้มนุษย์','ไททันที่เข้าข้างมนุษย์ ขโมยไฟจากเทพมาให้ ซุสจึงล่ามเขาไว้กับหน้าผา ให้อินทรีกินตับที่งอกใหม่ทุกวัน','ไฟ · ก้านเฟนเนล · ตับ','#c4703a',[['zeus','ผู้ลงโทษ','โกรธที่มนุษย์ได้ไฟ จึงล่ามเขาและสั่งสร้างแพนโดราเป็นของลงโทษ'],['heracles','ผู้ปลดปล่อย','ยิงอินทรีและปลดโซ่ให้เขาเป็นอิสระ'],['pandora','ผลสืบเนื่อง','เพราะการขโมยไฟ ซุสจึงส่งแพนโดราไปหามนุษย์']]],
+
+['bolt','a','สายฟ้าของซุส','Zeus’ Thunderbolt','Κεραυνός','อาวุธประจำตัวราชาเทพ','ไซคลอปส์ตีขึ้นให้ซุสเป็นการตอบแทนที่ถูกปล่อยจากทาร์ทารัส ใช้ชนะสงครามไททัน','สายฟ้า · ไซคลอปส์','#e0c36a',[['zeus','เจ้าของ','เป็นอาวุธที่ทำให้เขาเหนือเทพทุกองค์'],['cronus','ผู้ถูกโค่น','สายฟ้านี้ช่วยให้ซุสชนะสงครามไททัน']]],
+['trident','a','ตรีศูลของโพไซดอน','Poseidon’s Trident','Τρίαινα','อาวุธที่ปั่นป่วนทะเล','ไซคลอปส์สร้างให้เช่นกัน ปักลงพื้นเกิดแผ่นดินไหวหรือน้ำพุ ทะเลสงบหรือคลั่งตามใจเจ้าของ','สามง่าม · คลื่น · น้ำพุ','#4d92b0',[['poseidon','เจ้าของ','เป็นสัญลักษณ์ของอำนาจเหนือทะเลและแผ่นดินไหว'],['athens','เมืองที่ถูกแทง','เขาแทงอะโครโพลิสด้วยตรีศูลให้น้ำเค็มพุ่งขึ้นมา']]],
+['pandora','a','กล่องแพนโดรา','Pandora’s Jar','Πανδώρα','โถที่ปล่อยความทุกข์ออกมา','เฮฟเฟสตัสสร้างแพนโดราตามคำสั่งซุส เธอเปิดโถ (ภายหลังเรียกว่ากล่อง) ความทุกข์จึงกระจายสู่โลก เหลือเพียงความหวังในโถ','โถดิน · ความหวัง','#a67c5a',[['hephaestus','ผู้สร้าง','ปั้นแพนโดราจากดินตามคำสั่งซุส'],['prometheus','ต้นเหตุ','การขโมยไฟของเขาทำให้ซุสส่งของขวัญนี้มา'],['zeus','ผู้ลงโทษ','ใช้เป็นเครื่องลงโทษมนุษย์']]]
+];
+var D={},L={},$=function(s){return document.querySelector(s)};
+C.forEach(function(c){L[c[0]]=[]});
+R.forEach(function(r){D[r[0]]={id:r[0],c:r[1],th:r[2],en:r[3],gr:r[4],sub:r[5],d:r[6],f:r[7],col:r[8],r:r[9]};L[r[1]].push(r[0])});
+function gl(it){return Array.from(it.gr)[0]}
+
+/* ---------- หน้าหลัก ---------- */
+var pl=$('#pl'),fine=matchMedia('(hover:hover)').matches;
+pl.innerHTML=C.map(function(c){return '<div class="pl" tabindex="0" role="button" data-c="'+c[0]+'" style="--p:'+D[L[c[0]][0]].col+'" aria-label="'+c[2]+'"><span class="gv gk">'+c[1]+'</span><div class="pd"><div class="gk">'+c[1]+'</div><h2>'+c[2]+'</h2><p>'+c[3]+'</p><button class="go" tabindex="-1">เข้าสู่หมวดนี้ · '+L[c[0]].length+'</button></div></div>'}).join('');
+function act(p){pl.querySelectorAll('.pl').forEach(function(x){x.classList.toggle('act',x===p)})}
+act(pl.firstChild);
+pl.addEventListener('click',function(e){var p=e.target.closest('.pl');if(!p)return;if(p.classList.contains('act')){openCat(p.dataset.c,0)}else act(p)});
+pl.addEventListener('keydown',function(e){var p=e.target.closest('.pl');if(p&&(e.key==='Enter'||e.key===' ')){e.preventDefault();p.classList.contains('act')?openCat(p.dataset.c,0):act(p)}});
+pl.addEventListener('focusin',function(e){var p=e.target.closest('.pl');if(p)act(p)});
+if(fine)pl.addEventListener('mouseover',function(e){var p=e.target.closest('.pl');if(p&&!p.classList.contains('act'))act(p)});
+
+/* ---------- หน้าดู ---------- */
+var V=$('#viewer'),sg=$('#sg'),inf=$('#in'),ht=$('#ht'),cat='g',idx=0,sl=[],rk=0,drag=false,sx=0,mv=0;
+function openCat(c,i){cat=c;var cc=C.filter(function(x){return x[0]===c})[0];
+ sg.querySelectorAll('.sl').forEach(function(n){n.remove()});
+ sg.insertAdjacentHTML('afterbegin',L[c].map(function(id){var it=D[id];return '<div class="sl" style="--c:'+it.col+'" data-i="'+id+'"><div class="gw gk">'+it.gr+'</div><b>'+it.th+'</b><small>'+it.en+'</small></div>'}).join(''));
+ sl=Array.from(sg.querySelectorAll('.sl'));
+ ht.innerHTML=L[c].map(function(id,k){var it=D[id];return '<button data-k="'+k+'" style="--c:'+it.col+'" aria-label="'+it.th+'"><i>'+(k+1)+'</i><b>'+gl(it)+'</b><small>'+it.th+'</small></button>'}).join('');
+ $('#vt').textContent=cc[2];
+ $('#home').classList.remove('on');V.classList.add('on');scrollTo(0,0);sel(i||0,true)}
+function sel(i,first){var n=L[cat].length;idx=Math.max(0,Math.min(n-1,i));var it=D[L[cat][idx]];rk=0;
+ V.style.setProperty('--ac',it.col);$('#ct').textContent=(idx+1)+' / '+n;lay(0);
+ Array.from(ht.children).forEach(function(b,k){b.classList.toggle('on',k===idx)});
+ var hb=ht.children[idx];if(hb&&hb.scrollIntoView)hb.scrollIntoView({inline:'center',block:'nearest',behavior:first?'auto':'smooth'});
+ info(it);$('#pv').style.visibility=idx?'visible':'hidden';$('#nx').style.visibility=idx<n-1?'visible':'hidden'}
+function lay(dx){var W=sg.clientWidth,sw=Math.min(W*.62,300),st=sw*.88;sl.forEach(function(s,k){var o=k-idx+dx/st,a=Math.abs(o);s.style.width=sw+'px';s.style.transform='translate(-50%,-50%) translateX('+o*st+'px) scale('+(1-Math.min(a,2)*.15)+')';s.style.opacity=a>2.4?0:1-a*.3;s.style.zIndex=10-Math.round(a);s.style.pointerEvents=a>2.4?'none':'auto'})}
+function info(it){var rs=it.r,n=rs.length,cx=180,cy=122,rx=132,ry=84,g='';
+ rs.forEach(function(r,k){var a=-Math.PI/2+k*2*Math.PI/n,x=cx+rx*Math.cos(a),y=cy+ry*Math.sin(a),t=D[r[0]],nm=t?t.th:r[0];
+  g+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'"/>'});
+ rs.forEach(function(r,k){var a=-Math.PI/2+k*2*Math.PI/n,x=cx+rx*Math.cos(a),y=cy+ry*Math.sin(a),t=D[r[0]],nm=t?t.th:r[0],gy=t?gl(t):Array.from(nm)[0];
+  g+='<g class="nd'+(k===0?' on':'')+'" data-r="'+k+'" tabindex="0" role="button" aria-label="'+nm+' '+r[1]+'"><circle cx="'+x+'" cy="'+y+'" r="27"/><text class="g" x="'+x+'" y="'+(y+7)+'">'+gy+'</text><text class="n" x="'+x+'" y="'+(y+46)+'">'+nm+'</text><text class="t" x="'+x+'" y="'+(y+62)+'">'+r[1]+'</text></g>'});
+ g+='<circle cx="'+cx+'" cy="'+cy+'" r="34" fill="color-mix(in srgb,var(--ac) 30%,#120e0b)" stroke="var(--ac)" stroke-width="2"/><text class="g" x="'+cx+'" y="'+(cy+9)+'" style="font-size:26px">'+gl(it)+'</text>';
+ inf.innerHTML='<h2 class="nm">'+it.th+'</h2><div class="en">'+it.en+' · <span>'+it.gr+'</span></div><p class="sb">'+it.sub+'</p><p class="st">'+it.d+'</p><div class="fc">'+it.f.split(' · ').map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><h3>ความสัมพันธ์</h3><svg class="gr" viewBox="0 0 360 300" role="group" aria-label="แผนภาพความสัมพันธ์">'+g+'</svg><div class="rc" id="rc" aria-live="polite"></div>';
+ inf.scrollTop=0;inf.classList.remove('re');void inf.offsetWidth;inf.classList.add('re');rel(0)}
+function rel(k){var it=D[L[cat][idx]],r=it.r[k],t=D[r[0]];rk=k;
+ inf.querySelectorAll('.nd').forEach(function(n){n.classList.toggle('on',+n.dataset.r===k)});
+ var rc=$('#rc');rc.innerHTML='<span class="ty">'+r[1]+'</span><b>'+(t?t.th:r[0])+'</b><p>'+r[2]+'</p>'+(t?'<button class="b" data-go="'+t.id+'">ไปดู'+t.th+'</button>':'');
+ rc.classList.remove('re');void rc.offsetWidth;rc.classList.add('re')}
+function go(id){var t=D[id];if(!t)return;if(t.c!==cat){openCat(t.c,L[t.c].indexOf(id))}else sel(L[cat].indexOf(id))}
+
+inf.addEventListener('click',function(e){var n=e.target.closest('.nd'),b=e.target.closest('[data-go]');if(n)rel(+n.dataset.r);if(b)go(b.dataset.go)});
+inf.addEventListener('keydown',function(e){var n=e.target.closest&&e.target.closest('.nd');if(n&&(e.key==='Enter'||e.key===' ')){e.preventDefault();rel(+n.dataset.r)}});
+ht.addEventListener('click',function(e){var b=e.target.closest('button');if(b)sel(+b.dataset.k)});
+$('#pv').onclick=function(){sel(idx-1)};$('#nx').onclick=function(){sel(idx+1)};
+$('#bk').onclick=back;function back(){V.classList.remove('on');$('#home').classList.add('on')}
+sg.addEventListener('pointerdown',function(e){if(e.target.closest('.ar'))return;drag=true;sx=e.clientX;mv=0;sg.setPointerCapture(e.pointerId)});
+sg.addEventListener('pointermove',function(e){if(!drag)return;mv=e.clientX-sx;if(Math.abs(mv)>6)sg.classList.add('drag');lay(mv)});
+function end(e){if(!drag)return;drag=false;sg.classList.remove('drag');var m=mv,st=Math.min(sg.clientWidth*.62,300)*.88;
+ if(Math.abs(m)>Math.min(60,st*.25)){sel(idx+(m<0?1:-1))}else{if(Math.abs(m)<6){var el=document.elementFromPoint(e.clientX,e.clientY),s=el&&el.closest('.sl');if(s){var k=L[cat].indexOf(s.dataset.i);if(k!==idx){sel(k);return}}}lay(0)}}
+sg.addEventListener('pointerup',end);sg.addEventListener('pointercancel',end);
+var wl=0;sg.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Date.now()-wl>350&&Math.abs(e.deltaX)>12){wl=Date.now();e.preventDefault();sel(idx+(e.deltaX>0?1:-1))}},{passive:false});
+addEventListener('keydown',function(e){if(!V.classList.contains('on'))return;if(e.key==='ArrowRight')sel(idx+1);else if(e.key==='ArrowLeft')sel(idx-1);else if(e.key==='Escape')back();else if(/^[1-9]$/.test(e.key)&&!e.target.closest('input'))sel(+e.key-1)});
+addEventListener('resize',function(){if(V.classList.contains('on'))lay(0)});
+})();
+</script>
+</body>
+</html>
